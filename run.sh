@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Unset PORT and HOST environment variables, wrongly set by Dokku
+unset PORT
+unset HOST
+
 # Add tokens
 echo ${COUCHDB_USER} > /etc/cozy/couchdb.login
 echo ${COUCHDB_PASSWORD} >> /etc/cozy/couchdb.login
