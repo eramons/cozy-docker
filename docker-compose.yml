@@ -1,0 +1,16 @@
+couchdb:
+ image: couchdb
+ environment:
+  - COUCHDB_USER=admin
+  - COUCHDB_PASSWORD=password
+cozy:
+ build: .
+ environment:
+  - COUCHDB_USER=admin
+  - COUCHDB_PASSWORD=password
+  - COUCH_HOST=couchdb
+  - COUCH_PORT=5984
+ links:
+  - couchdb:couchdb
+ ports:
+  - 9104:9104
