@@ -6,9 +6,9 @@ RUN apt-get -y update && apt-get install -y python openssl git imagemagick curl 
 # Add cozy users and directories and install cozy npm modules
 RUN useradd -M cozy && useradd -M cozy-data-system && useradd -M cozy-home && mkdir /etc/cozy && chown -hR cozy /etc/cozy && npm install -g coffee-script cozy-monitor cozy-controller 
 
-# Envirnoment
-ENV COUCHDB_USER
-ENV COUCHDB_PASSWORD
+# Environment
+ENV COUCHDB_USER admin
+ENV COUCHDB_PASSWORD ""
 
 ENV NODE_ENV production
 ENV COUCH_HOST couchdb
