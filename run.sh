@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Add tokens
 echo ${COUCHDB_USER} > /etc/cozy/couchdb.login
 echo ${COUCHDB_PASSWORD} >> /etc/cozy/couchdb.login
@@ -13,12 +14,14 @@ export CONTROLLER_HOST=0.0.0.0
 
 # Wait for couchdb to be up and running
 RUNNING=1
+echo Waiting for couchdb... $COUCH_HOST:$COUCH_PORT
 while [ $RUNNING != 0 ]; do
-        (curl -s couchdb:5984)
+        (curl -s $COUCH_HOST:$COUCH_PORT)
         RUNNING=$?
 done
 
 # Create cozy database
+echo Creating cozy database in couchdb...
 curl -s -X PUT http://$COUCHDB_USER:$COUCHDB_PASSWORD@$COUCH_HOST:$COUCH_PORT/cozy
 
 # Start cozy controller as background process
@@ -27,6 +30,7 @@ pid="$!"
 
 # Wait for cozy controller to be up and running
 RUNNING=1
+echo Waiting for cozy-controller to finish starting...
 while [ $RUNNING != 0 ]; do
         (curl -s localhost:9002)
         RUNNING=$?
