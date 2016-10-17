@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Unset PORT and HOST environment variables, wrongly set by Dokku
+# Unset PORT and HOST environment variables (set by Dokku)
 unset PORT
 unset HOST
 

@@ -1,4 +1,5 @@
 FROM node:4
+MANTAINER Eva Ramon <eramon@empanadilla.net>
 
 # Install dependencies (cozy)
 RUN apt-get -y update && apt-get install -y python openssl git imagemagick curl wget sqlite3 build-essential python-dev python-setuptools python-pip libssl-dev libxml2-dev libxslt1-dev pwgen sudo
